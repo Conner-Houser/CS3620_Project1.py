@@ -2,11 +2,13 @@
 
 outcome_file = "adventure_outcome.txt"
 
+#create save outcome
 def save_outcome(outcome):
     #Save the outcome of the game to a file
     with open(outcome_file, "a") as f:
         f.write(f"{outcome}\n")
 
+#create read outcome
 def read_outcome():
     #Read and display outcomes
     print("\n----- Past Adventure Outcomes -----")
@@ -16,15 +18,16 @@ def read_outcome():
 
 
 # Cave Path (Door 1)
-
 def door_1():
     print("\nYou push open the stone door and descend into a dark cave.\n" \
     "A faint torch flickers in the distance, and a tunnel stretches in the dark.\n")
 
+    #user input
     choice = input("Do you take the torch or go in the dark?\n\n"\
                 "To Grab the torch type 'torch'\n"\
-                "To continue in the dark type 'dark'\n\n")
+                "To continue in the dark type 'dark'\n\n").lower()
     
+    #if statement depending on choice
     if choice == "torch":
         treasure_chamber()
     elif choice == "dark":
@@ -40,10 +43,12 @@ def treasure_chamber():
     print("\nThe torch lights the way to a hidden treasure chamber. \n"\
         "A massive chest gleams in the center of the room.\n\n")
     
+    #User input
     choice = input("Do you open the chest or leave it alone?\n\n"\
                 "To Grab the torch type 'open'\n"\
-                "To continue in the dark type 'leave'\n\n")
+                "To continue in the dark type 'leave'\n\n").lower()
     
+    #if statement depending on choice
     if choice == "open":
 
         print("Inside the chest lies gold and jewls beyond imagination.\n" \
@@ -71,11 +76,13 @@ def door_2():
     print("\nAs you step into a glowing meadow you begin to see a village appear in the distance.\n" \
     "An old woman appears infront of you and offers you one of two items: a sword or a shield\n\n")
 
+    #user input
     choice = input("Do you take the sword, shield, or refuse?\n\n"\
                 "To grab the sword type 'sword'\n"\
                 "To grab the shield type 'shield'\n"\
-                "To refuse the offer and continue forward type 'refuse'\n")
+                "To refuse the offer and continue forward type 'refuse'\n").lower()
     
+    #if statement depending on choice
     if choice == "sword":
         dragon_battle("sword")
 
@@ -93,16 +100,20 @@ def door_2():
 
         save_outcome("The player wasted their chance in the meadow")
 
-# Dragon battle
+# Dragon battle within medow (Door 2)
 def dragon_battle(weapon):
+        
+        #if statement for each weapon type
         if weapon == "sword":
             print("\nThe sword glows in your hand as a dragon swoops down.\n" \
             "You strike true, slaying the beast! The villagers towards you from a distance and hail you as their hero\n")
-
+            
+            #user input
             choice = input("Do you help the villagers or keep the dragon's treasure and leave.\n\n"\
                     "To help the villagers type 'help'\n"\
-                    "To keep the dragons treasure type 'keep'\n")
+                    "To keep the dragons treasure type 'keep'\n").lower()
 
+            #if statement depending on choice after killing dragon
             if choice == "help":
                 print("\nYou help rebuild the village.\n" \
                 "Your name is remembered in songs and stories for centuries.")
@@ -131,10 +142,12 @@ def crawlspace():
     print("\nYou crawl through the narrow passage and enter a vast library.\n" \
     "Books whisper around you, and one glowing book floats in the air.\n")
 
+    #user input
     choice = input("Do you read the book or ignore it?\n\n"
                 "To read the book type 'read'\n"\
                 "To ignore the book type 'ignore'\n").lower()
 
+    #if statement depending on choice
     if choice == "read":
         wizard_path()
     elif choice == "ignore":
@@ -147,15 +160,17 @@ def crawlspace():
         print("The book fades into dust, leaving you with nothing.")
         save_outcome("Player hesitated and lost the magic book.")
 
-
+#Wizard path within library (crawl space / door 3)
 def wizard_path():
     print("\nThe book grants you powerful magic! Two portals appear:\n" \
     "One burns with fire, the other shimmers with water.\n\n")
 
+    #User input for option
     choice = input("Do you enter the fire portal or water portal?\n\n" 
     "To enter the portal of fire type 'fire'\n"
     "To enter the portal of water type 'water'\n")
 
+    #if statement depending on choice
     if choice == "fire":
         print("You enter the realm of flames. A fire demon towers before you.\n" \
         "Despite your magic, it consumes you. Your legend ends in fire.")
@@ -176,12 +191,15 @@ def wizard_path():
 
 
 
-# Game Loop
+# Game Loop 
+
+#create start adventure and ask for adventurers name
 def start_adventure():
     print("Welcome to the Lost Kingdom of Avelora!\n")
     name = input("What is your name, adventurer? ")
     print(f"Greetings, {name}! Your journey is about to begin...\n")
 
+    #While loop if true game begis
     playing = True
     while playing:
         print("You stand at the entrance of the ruins.\n"
@@ -190,11 +208,13 @@ def start_adventure():
             "2. A golden archway leading to a meadow.\n"
             "3. A crawlspace leading into darkness.\n")
 
+        #user input for choice
         choice = input("What door would you like to choose?\n\n"
                     "For door 1 type '1'\n"
                     "For door 2 type '2'\n"
                     "For door 3 type 'crawl'\n\n")
         
+        #if statement depending on choice
         if choice == "1":
             door_1()
         elif choice == "2":
@@ -205,11 +225,16 @@ def start_adventure():
             print("Unable to decide, you wander away form the ruins. Your adventure ends")
             save_outcome("player walked away from Avelora without adventure.")
 
+        #user input to play again after reaching an ending
         again = input("\nWould you like to play again? (yes/no)").lower()
+
+        #if statement to loop through game from begining
         if again != "yes":
             playing = False
 
     print("\nThanks for playing!")
+
+    #read players outcome
     read_outcome()
 
 # main
