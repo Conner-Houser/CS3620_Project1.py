@@ -74,7 +74,7 @@ def door_2():
     choice = input("Do you take the sword, shield, or refuse?\n\n"\
                 "To grab the sword type 'sword'\n"\
                 "To grab the shield type 'shield'\n"\
-                "You refuse the offer and continue forward\n")
+                "To refuse the offer and continue forward type 'refuse'\n")
     
     if choice == "sword":
         dragon_battle("sword")
@@ -120,7 +120,7 @@ def dragon_battle(weapon):
                 save_outcome("Player lost the dragon's treasure by hesitating")
 
         elif weapon == "shield":
-            print("\n The dragon attacks, but your shield holds strong. \n" \
+            print("\nThe dragon attacks, but your shield holds strong.\n" \
             "The beast grows tired and flies away. The villagers call you wise")
 
             save_outcome("Player survived the dragon with the shield.")
