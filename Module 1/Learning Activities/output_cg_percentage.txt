@@ -1,0 +1,2 @@
+The percentage of C + G in DNA sequence is: 38.89%
+The percentage of C + G in DNA sequence is: 83.33%
